@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Register Device</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-slides pager>
+    <ion-slide>
+      <ion-toolbar>
+      </ion-toolbar>
+      <ion-list>
+        <ion-item>
+          <ion-input type="text" placeholder="Serial" clearInput="true"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Category" clearInput="true"></ion-input>
+          <ion-select>
+                <ion-option value="">Cell Phone</ion-option>
+                <ion-option value="">Electronic</ion-option>
+                <ion-option value="">Babies </ion-option>
+                <ion-option value="">Car </ion-option>
+                <ion-option value="">Jewerly </ion-option>
+                <ion-option value="">Beauty </ion-option>
+                <ion-option value="">Garden</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Subcategory" clearInput="true"></ion-input>
+          <ion-select>
+                <ion-option value="">SmartPhone</ion-option>
+                <ion-option value="">Computer</ion-option>
+                <ion-option value="">Tv </ion-option>
+                <ion-option value="">Tablet </ion-option>
+                <ion-option value="">Refrigerator </ion-option>
+                <ion-option value="">Blender </ion-option>
+                <ion-option value="">Light</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Make" clearInput="true"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Model" clearInput="true"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Warranty time" clearInput="true"></ion-input>
+          <ion-select>
+                <ion-option value="">1 year</ion-option>
+                <ion-option value="">2 year </ion-option>
+                <ion-option value="">3 year </ion-option>
+                <ion-option value="">4 year </ion-option>
+                <ion-option value="">5 year </ion-option>
+                <ion-option value="">6 year </ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label class="label-style">Date of Purchase</ion-label>
+          <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.month"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Vendor" clearInput="true"></ion-input>
+        </ion-item>
+        <button ion-button block>
+            Next
+        </button>
+      </ion-list>
+  </ion-slide>
+        <ion-slide>
+          <ion-toolbar>
+          </ion-toolbar>
+
+          <img src="assets/img/check.jpg" class="slide-image"/>
+          <h5 class="slide-title">Fill product data, upload files (picture, pdf files, etc) and press save</h5>
+
+          <button ion-button icon-right color="primary"
+                  (click)="dofile()">
+            Upload File
+            <ion-icon name="cloud-upload"></ion-icon>
+          </button>
+
+        </ion-slide>
+      </ion-slides>
+
+
+
+</ion-content>

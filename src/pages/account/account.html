@@ -1,0 +1,146 @@
+
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-buttons start left>
+      <button ion-button icon-only (click)="dismissAccount()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="updateAccount()">
+        <ion-icon name="checkmark" color="primary"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content >
+      <ion-list >
+        <ion-item-divider color="light">Basic Settings</ion-item-divider>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="clipboard" color="gray"></ion-icon>
+            </ion-label>
+            <ion-input type="text" placeholder="First name" clearInput="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="clipboard" color="gray"></ion-icon>
+            </ion-label>
+            <ion-input type="text" placeholder="Last name" clearInput="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="mail" color="gray"></ion-icon>
+            </ion-label>
+            <ion-input type="text" placeholder="Email" clearInput="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="lock" color="gray"></ion-icon>
+          </ion-label>
+            <ion-input type="password" placeholder="Password" clearInput="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="phone-portrait" color="gray"></ion-icon>
+            </ion-label>
+            <ion-input type="text" placeholder="Phone number" clearInput="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="pin"color="gray"></ion-icon>
+              <span class="label-style">Country</span>
+            </ion-label>
+
+              <ion-select>
+                <ion-option value="">Afghanistan</ion-option>
+                <ion-option value="">Argentina </ion-option>
+                <ion-option value="">Australia </ion-option>
+                <ion-option value="">Belgium </ion-option>
+                <ion-option value="">Bolivia </ion-option>
+                <ion-option value="">Brazil </ion-option>
+                <ion-option value="">Cambodia </ion-option>
+                <ion-option value="">Cameroon </ion-option>
+                <ion-option value="">Canada </ion-option>
+                <ion-option value="">Chile </ion-option>
+                <ion-option value="">China </ion-option>
+                <ion-option value="">Colombia </ion-option>
+                <ion-option value="">Costa Rica </ion-option>
+                <ion-option value="">Cuba </ion-option>
+                <ion-option value="">Denmark </ion-option>
+                <ion-option value="">Dominican Republic </ion-option>
+                <ion-option value="">Ecuador </ion-option>
+                <ion-option value="">Egypt </ion-option>
+                <ion-option value="">El Salvador </ion-option>
+                <ion-option value="">England </ion-option>
+                <ion-option value="">Estonia </ion-option>
+                <ion-option value="">Ethiopia </ion-option>
+                <ion-option value="">Finland </ion-option>
+                <ion-option value="">France </ion-option>
+                <ion-option value="">Germany </ion-option>
+                <ion-option value="">Ghana </ion-option>
+                <ion-option value="">Greece </ion-option>
+                <ion-option value="">	Guatemala	</ion-option>
+                <ion-option value="">	Haiti	</ion-option>
+                <ion-option value="">	Honduras	</ion-option>
+                <ion-option value="">	Indonesia	</ion-option>
+                <ion-option value="">	Iran	</ion-option>
+                <ion-option value="">	Ireland	</ion-option>
+                <ion-option value="">	Israel	</ion-option>
+                <ion-option value="">	Italy	</ion-option>
+                <ion-option value="">	Japan	</ion-option>
+                <ion-option value="">	Jordan	</ion-option>
+                <ion-option value="">	Kenya	</ion-option>
+                <ion-option value="">	Laos	</ion-option>
+                <ion-option value="">	Latvia	</ion-option>
+                <ion-option value="">	Lebanon	</ion-option>
+                <ion-option value="">	Lithuania	</ion-option>
+                <ion-option value="">	Malaysia	</ion-option>
+                <ion-option value="">	Mexico	</ion-option>
+                <ion-option value="">	Morocco	</ion-option>
+                <ion-option value="">	Netherlands	</ion-option>
+                <ion-option value="">	New Zealand	</ion-option>
+                <ion-option value="">	Nicaragua	</ion-option>
+                <ion-option value="">	Norway	</ion-option>
+                <ion-option value="">	Panama	</ion-option>
+                <ion-option value="">	Paraguay	</ion-option>
+                <ion-option value="">	Peru	</ion-option>
+                <ion-option value="">	Philippines	</ion-option>
+                <ion-option value="">	Poland	</ion-option>
+                <ion-option value="">	Portugal	</ion-option>
+                <ion-option value="">	Puerto Rico	</ion-option>
+                <ion-option value="">	Romania	</ion-option>
+                <ion-option value="">	Russia	</ion-option>
+                <ion-option value="">	Saudi Arabia	</ion-option>
+                <ion-option value="">	Scotland	</ion-option>
+                <ion-option value="">	South Korea	</ion-option>
+                <ion-option value="">	Spain	</ion-option>
+                <ion-option value="">	Sweden	</ion-option>
+                <ion-option value="">	Switzerland	</ion-option>
+                <ion-option value="">	Taiwan	</ion-option>
+                <ion-option value="">	Tajikistan	</ion-option>
+                <ion-option value="">	Thailand	</ion-option>
+                <ion-option value="">	Turkey	</ion-option>
+                <ion-option value="">	Ukraine	</ion-option>
+                <ion-option value="">	(The) United Kingdom	</ion-option>
+                <ion-option value="">	(The) United States	</ion-option>
+                <ion-option value="">	Uruguay	</ion-option>
+                <ion-option value="">	Venezuela	</ion-option>
+                <ion-option value="">	Vietnam	</ion-option>
+                <ion-option value="">	Wales	</ion-option>
+              </ion-select>
+          </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item-divider color="light">  Advance Settings</ion-item-divider>
+        <ion-item>
+          <ion-label>
+          <ion-icon name="body" color="gray"></ion-icon>
+          Show my user 48h
+        </ion-label>
+          <ion-toggle checked="false"></ion-toggle>
+      </ion-item>
+      </ion-list>
+</ion-content>

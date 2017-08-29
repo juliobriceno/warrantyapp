@@ -1,14 +1,80 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>
-      Ionic Blank
+      Dashboard
     </ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only>
+          <ion-icon name="notifications" class="badge">
+            <span class="notifications-badge">3</span>
+          </ion-icon>
+        </button>
+        <button ion-button icon-only
+                [navPush]="tab10">
+          <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
-</ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+</ion-header>
+<ion-content>
+  <ion-row padding>
+    <!--  -->
+    <ion-col col-3 text-center class="green">
+      <ion-icon class="icon-style" name="locate"></ion-icon>
+      <h6 class="title">21</h6>
+      <p no-padding no-margin class="title">Current Devices</p>
+    </ion-col>
+    <ion-col col-3 text-center class="orange">
+       <ion-icon class="icon-style" name="checkmark"></ion-icon>
+      <h6 class="title">21</h6>
+      <p no-padding no-margin class="title">Past Devices</p>
+    </ion-col>
+    <ion-col col-3 text-center class="red">
+      <ion-icon class="icon-style" name="lock"></ion-icon>
+      <h6 class="title">114</h6>
+      <p no-paddin no-margin class="title">Close Devices</p>
+    </ion-col>
+    <ion-col col-3 text-center class="blue">
+      <ion-icon class="icon-style" name="bulb"></ion-icon>
+      <h6 class="title">119</h6>
+      <p no-paddin no-margin class="title">Alert & Messages</p>
+    </ion-col>
+  </ion-row>
+  <!-- Segments alerts and list devices -->
+  <div>
+    <ion-segment [(ngModel)]="menu" color="primary" >
+      <ion-segment-button value="alert">
+
+        <label><ion-icon name="bookmark"></ion-icon>
+        Alerts & Messages</label>
+      </ion-segment-button>
+      <ion-segment-button value="list" >
+        <ion-icon name="list"></ion-icon>
+        List Devices
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="menu">
+    <ion-list *ngSwitchCase="'alert'" >
+      <ion-item>
+        <p class="color-item">Julio Hey! I see you have a new device :) ...</p>
+        <ion-icon name="checkmark" color="secondary" item-end small></ion-icon>
+       </ion-item>
+       <ion-item>
+         <p class="color-item">Julio Hey! I see you have a new device :) ...</p>
+         <ion-icon name="information-circle" item-end small></ion-icon>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'list'" >
+      <ion-row>
+        <ion-col col-12>
+      <ion-item><ion-icon name="document" color="primary" item-start small></ion-icon><p class="color-item">Cell Phone Samsung Galaxy (chino)</p></ion-item>
+      <ion-item><ion-icon name="document" color="primary" item-start small></ion-icon><p class="color-item">Cell Phone Samsung Galaxy (II)</p></ion-item>
+      <ion-item><ion-icon name="document" color="primary" item-start small></ion-icon><p class="color-item">Cell Phone Zte</p></ion-item>
+    </ion-col>
+    </ion-row>
+    </ion-list>
+  </div>
 </ion-content>

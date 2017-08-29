@@ -1,0 +1,22 @@
+page-newdevices {
+  .item-devices{
+    font-size: 1.4rem;
+  }
+  input[type=text],input[type=email],input[type=password] {
+    font-size: 1.4rem ;
+  }
+  ion-label{
+    font-size: 1.4rem;
+    }
+  .toolbar-background {
+    background: #fff;
+    border-color: transparent;
+  }
+  .slide-zoom {
+    height: 100%;
+  }
+  .label-style{
+    margin-left: 10px;
+    color:#000;
+  }
+}

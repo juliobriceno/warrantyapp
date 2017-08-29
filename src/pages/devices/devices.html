@@ -1,0 +1,90 @@
+<ion-header >
+
+  <ion-navbar color="dark">
+    <ion-title>
+      Devices
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="doRadio()">
+        <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-searchbar (input)="getItems($event)"></ion-searchbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-fab bottom right>
+    <button ion-fab
+            color="primary"
+            [navPush]="tab9">
+            <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-card>
+    <ion-row>
+      <ion-col col-8>
+        <ion-item item-text-wrap>
+          <div class="card-title">Samsung</div>
+          <div class="card-subtitle"><ion-icon name="barcode" ios="ios-barcode" md="md-barcode"></ion-icon> Serial</div>
+          <div class="card-subtitle"><ion-icon name="calendar"></ion-icon> Date of Purchase</div>
+          <div class="card-subtitle"><ion-icon name="person"></ion-icon> Vendor</div>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4  push-1>
+        <button ion-button  color="primary" clear icon-only (click)="openMenu()" >
+          <ion-icon name='cloud-download' is-active="false" icon-left ></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-10>
+      <ion-item>
+        <ion-input input="text" placeholder="Type user to transfer this device"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-2>
+      <button ion-button small>
+        <ion-icon name="repeat"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+  </ion-card>
+  <ion-card>
+    <ion-row>
+      <ion-col col-8>
+
+        <ion-item item-text-wrap>
+
+          <div class="card-title">Samsung</div>
+
+          <div class="card-subtitle"><ion-icon name="barcode" ios="ios-barcode" md="md-barcode"></ion-icon> Serial</div>
+          <div class="card-subtitle"><ion-icon name="calendar"></ion-icon> Date of Purchase</div>
+          <div class="card-subtitle"><ion-icon name="person"></ion-icon> Vendor</div>
+        </ion-item>
+
+
+      </ion-col>
+
+      <ion-col col-4  push-1>
+        <button ion-button color="primary" clear icon-only (click)="openMenu()" >
+          <ion-icon name='cloud-download' is-active="false" icon-left ></ion-icon>
+
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-10>
+      <ion-item>
+        <ion-input input="text" placeholder="Type user to transfer this device"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-2>
+      <button ion-button small>
+        <ion-icon name="repeat"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+  </ion-card>
+</ion-content>

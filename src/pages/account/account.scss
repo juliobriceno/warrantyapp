@@ -1,0 +1,23 @@
+page-account {
+
+  .item{
+    margin-bottom: 5px;
+  }
+  .account-margin{
+    padding: 10px 10px;
+    text-align: center;
+  }
+  ion-label.label{
+    font-size: 1.4rem;
+  }
+  input[type=text],input[type=email],input[type=password] {
+    font-size: 1.4rem
+  }
+  .item-toggle ion-label {
+    color: #000;
+  }
+  .label-style{
+    margin-left: 10px;
+    color:#000;
+  }
+}
