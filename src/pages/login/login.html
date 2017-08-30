@@ -21,7 +21,7 @@
 </ion-toolbar>
 </ion-header>
 <ion-content class="background" >
-  
+
   <div [ngSwitch]="segments">
     <ion-list *ngSwitchCase="'login'" >
       <ion-grid>
@@ -41,7 +41,7 @@
                   </ion-item>
                 </ion-list>
                 <button ion-button block large color="primary"
-                        [navPush]="tab8">
+                        (click) ="Login();">
                   Sign In</button>
                 <ion-item class="bg-transparent">
                   <p>Forgot your password? <a>click here</a></p>
