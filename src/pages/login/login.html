@@ -34,10 +34,10 @@
               <ion-card-content>
                 <ion-list >
                   <ion-item>
-                    <ion-input type="text" placeholder="Username" clearInput="true"></ion-input>
+                    <ion-input [(ngModel)]="correo" type="text" placeholder="Username" clearInput="true"></ion-input>
                   </ion-item>
                   <ion-item>
-                    <ion-input type="password" placeholder="Password" clearInput="true"></ion-input>
+                    <ion-input [(ngModel)]="contrasena" type="password" placeholder="Password" clearInput="true"></ion-input>
                   </ion-item>
                 </ion-list>
                 <button ion-button block large color="primary"
