@@ -19,8 +19,8 @@ export class LoginPage {
              public loadingCtrl: LoadingController) {
   }
 
-  correo:string = '';
-  contrasena:string = '';
+  correo:string = 'julio.briceno@gmail.com';
+  contrasena:string = '333';
 
   Login(){
     let mUrl = url + 'Logon';
@@ -38,7 +38,7 @@ export class LoginPage {
       .post( mUrl, body ).subscribe(res => {
         loading.dismiss();
         if (res.json().Result == 'ok' ){
-          this.navCtrl.push( HomePage )
+          this.navCtrl.push( TabsPage )
         }
         else{
           let alert = this.alertCtrl.create({

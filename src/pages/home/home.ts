@@ -14,6 +14,8 @@ export class HomePage {
   tab10:any = MenuopcionsPage;
   menu:string="alert";
   devices:any = [];
+  messages:any = [];
+  user:any = {};
   constructor(public navCtrl: NavController,
              public http: Http, public alertCtrl: AlertController,
              public loadingCtrl: LoadingController) {
@@ -32,8 +34,11 @@ export class HomePage {
         console.log(res.json().Result);
         if (res.json().Result == 'ok' ){
           this.devices = res.json().Devices;
-          alert('Vale que bien');
+          this.messages = res.json().Messages;
+          this.user = res.json().Devices;
           console.log(this.devices);
+          console.log(this.messages);
+          console.log(this.user);
         }
         else{
           let alert = this.alertCtrl.create({
