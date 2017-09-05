@@ -90,5 +90,33 @@ export class DevicesPage {
                 console.log('ionViewDidLoad DevicesPage');
               }
 
+              doPrompt() {
+                let prompt = this.alertCtrl.create({
+                  title: 'Transfer',
+                  message: "Enter type user to transfer this device",
+                  inputs: [
+                    {
+                      name: 'email',
+                      placeholder: 'Title'
+                    },
+                  ],
+                  buttons: [
+                    {
+                      text: 'Cancel',
+                      handler: data => {
+                        console.log('Cancel clicked');
+                      }
+                    },
+                    {
+                      text: 'Save',
+                      handler: data => {
+                        console.log('Saved clicked');
+                      }
+                    }
+                  ]
+                });
+                prompt.present();
+              }
+
 
 }
