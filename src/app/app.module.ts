@@ -6,7 +6,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import {HomePage,DevicesPage,AccountPage,TabsPage,NewdevicesPage,MenuopcionsPage, MenufilePage} from '../pages/index.paginas';
-
+import { SharedParametersProvider } from '../providers/shared-parameters/shared-parameters';
+import { AutoCompleteModule } from 'ionic2-auto-complete';
+import { CompleteTestServiceProvider } from '../providers/complete-test-service/complete-test-service';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,11 @@ import {HomePage,DevicesPage,AccountPage,TabsPage,NewdevicesPage,MenuopcionsPage
     NewdevicesPage,
     MenuopcionsPage,
     MenufilePage
-
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    AutoCompleteModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -35,12 +37,13 @@ import {HomePage,DevicesPage,AccountPage,TabsPage,NewdevicesPage,MenuopcionsPage
     NewdevicesPage,
     MenuopcionsPage,
     MenufilePage
-
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SharedParametersProvider,
+    CompleteTestServiceProvider
   ]
 })
 export class AppModule {}

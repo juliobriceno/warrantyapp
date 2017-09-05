@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HomePage, DevicesPage,AccountPage } from "../index.paginas";
 
-
 @Component({
   selector: 'page-tabs',
   templateUrl: 'tabs.html',

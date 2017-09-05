@@ -6,6 +6,8 @@ import { AlertController, LoadingController } from 'ionic-angular';
 
 import { url } from "../../config/url.config"
 
+import { SharedParametersProvider } from "../../providers/shared-parameters/shared-parameters"
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -16,11 +18,14 @@ export class HomePage {
   devices:any = [];
   messages:any = [];
   user:any = {};
+  transferuser:any = {};
+  devicesfiltered:any = {};
   constructor(public navCtrl: NavController,
              public http: Http, public alertCtrl: AlertController,
-             public loadingCtrl: LoadingController) {
+             public loadingCtrl: LoadingController, public ctrSharedParametersProvider: SharedParametersProvider) {
+
     let mUrl = url + 'api/GetInitialData';
-    const body = {userLogon: { strEmail: '', strPassword: '' }};
+    const body = {};
 
     let loading = this.loadingCtrl.create({
       content: 'Working...',
@@ -36,6 +41,15 @@ export class HomePage {
           this.devices = res.json().Devices;
           this.messages = res.json().Messages;
           this.user = res.json().Devices;
+          this.transferuser = res.json().transferusers;
+          this.devicesfiltered = this.devices;
+
+          this.ctrSharedParametersProvider.setDevices(this.devices);
+          this.ctrSharedParametersProvider.setMessages(this.messages);
+          this.ctrSharedParametersProvider.setUser(this.user);
+          this.ctrSharedParametersProvider.setTransferUser(this.transferuser);
+          this.ctrSharedParametersProvider.setDevicesFiltered(this.devicesfiltered);
+
           console.log(this.devices);
           console.log(this.messages);
           console.log(this.user);
@@ -49,6 +63,15 @@ export class HomePage {
           alert.present();        }
       }
     )
+
+  }
+
+  ionViewWillEnter(){
+    if (typeof this.user != undefined){
+      this.devices = this.ctrSharedParametersProvider.getDevices();
+      this.messages = this.ctrSharedParametersProvider.getMessages();
+      this.user = this.ctrSharedParametersProvider.getUser();
+    }
   }
 
 }
