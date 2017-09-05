@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, Platform, AlertController, LoadingController   } from 'ionic-angular';
 import { NewdevicesPage } from "../index.paginas";
 import { Http } from '@angular/http';
+import {ViewChild} from '@angular/core';
 
 import { url } from "../../config/url.config"
 
@@ -21,6 +22,7 @@ export class DevicesPage {
   user:any = {};
   transferuser:any = {};
   devicesfiltered:any = {};
+  @ViewChild('searchbar') searchbar: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -42,12 +44,6 @@ export class DevicesPage {
                   this.transferuser = this.ctrSharedParametersProvider.getTransferUser();
                   this.devicesfiltered = this.ctrSharedParametersProvider.getDevicesFiltered();
                 }
-              }
-
-              ionViewCanLeave(){
-                this.ctrSharedParametersProvider.setDevices(this.devices);
-                this.ctrSharedParametersProvider.setMessages(this.messages);
-                this.ctrSharedParametersProvider.setUser(this.user);
               }
 
               doRadio() {
@@ -78,17 +74,20 @@ export class DevicesPage {
                 alert.present();
               }
 
-              openMenu() {
+              ShowFiles(device) {
                   var mybuttons = [];
-                  mybuttons.push(
-                    {
-                      text: 'file1.ppt 1.67MB',
-                      icon: !this.platform.is('ios') ? 'cloud-download' : null,
-                      handler: () => {
-                        window.open('https://drive.google.com/file/d/0B_kFczFUGtVTd3lObElVbDc5S1U/view?usp=drivesdk', '_blank')
+                  var micon = !this.platform.is('ios') ? 'cloud-download' : null;
+                  device.Files.forEach(function(file) {
+                    mybuttons.push(
+                      {
+                        text: file.FileName,
+                        icon: micon,
+                        handler: () => {
+                          window.open(file.FilewebViewLink, '_blank')
+                        }
                       }
-                    }
-                  );
+                    );
+                  });
                   let actionSheet = this.actionsheetCtrl.create({
                     title: 'Files',
                     cssClass: 'action-sheets-basic-page',
@@ -97,14 +96,79 @@ export class DevicesPage {
                   actionSheet.present();
               }
 
+              TransferDevice(device){
+                if (typeof this.searchbar.getSelection() == 'undefined'){
+                  let alert = this.alertCtrl.create({
+                    title: 'Ohhh',
+                    subTitle: 'You must choose a valid email',
+                    buttons: ['Dismiss']
+                  });
+                  alert.present();
+                  return 0;
+                }
+                console.log(this.searchbar.getSelection());
+                let confirm = this.alertCtrl.create({
+                  title: 'Sure?',
+                  message: 'Are you sure that you like to transfer this device?',
+                  buttons: [
+                    {
+                      text: 'Ok',
+                      handler: () => {
+
+                        let mUrl = url + 'api/TransferDevice';
+
+                        const body = { strSerial: device.strSerial, strEmailTransfer: this.searchbar.getSelection().email };
+
+                        let loading = this.loadingCtrl.create({
+                          content: 'Working...',
+                          spinner: 'ios'
+                        });
+
+                        loading.present();
+
+                        this.http
+                          .post( mUrl, body ).subscribe(res => {
+                            loading.dismiss();
+                            if (res.json().Result == 'ok' ){
+                              let alert = this.alertCtrl.create({
+                                title: 'Greate!',
+                                subTitle: 'Device was transfer',
+                                buttons: ['Ok']
+                              });
+                              alert.present();
+                            }
+                            else{
+                              let alert = this.alertCtrl.create({
+                                title: 'Oops!',
+                                subTitle: 'Credentials are invalid! Please register',
+                                buttons: ['Ok']
+                              });
+                              alert.present();
+                            }
+                          }
+                        )
+
+                      }
+                    },
+                    {
+                      text: 'Cancel',
+                      handler: () => {
+                        console.log('Disagree clicked');
+                      }
+                    }
+                  ]
+                });
+                confirm.present();
+              }
+
               doPrompt() {
                 let prompt = this.alertCtrl.create({
                   title: 'Transfer',
-                  message: "Enter type user to transfer this device",
+                  message: "Type user to transfer this device",
                   inputs: [
                     {
                       name: 'email',
-                      placeholder: 'Title'
+                      placeholder: 'Email'
                     },
                   ],
                   buttons: [
@@ -115,7 +179,7 @@ export class DevicesPage {
                       }
                     },
                     {
-                      text: 'Save',
+                      text: 'Transfer',
                       handler: data => {
                         console.log('Saved clicked');
                       }

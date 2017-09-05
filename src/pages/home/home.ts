@@ -71,6 +71,8 @@ export class HomePage {
       this.devices = this.ctrSharedParametersProvider.getDevices();
       this.messages = this.ctrSharedParametersProvider.getMessages();
       this.user = this.ctrSharedParametersProvider.getUser();
+      this.transferuser = this.ctrSharedParametersProvider.getTransferUser();
+      this.devicesfiltered = this.ctrSharedParametersProvider.getDevicesFiltered();
     }
   }
 

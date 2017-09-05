@@ -35,15 +35,15 @@
 
     <ion-row no-padding class="margin-opcion">
       <ion-col>
-        <button ion-button clear small color="primary" icon-start (click)="openMenu()">
+        <button ion-button clear small color="primary" icon-start (click)="ShowFiles(device)">
           <ion-icon name='cloud-download'></ion-icon>
-          Download
+          Files
         </button>
       </ion-col>
       <ion-col text-center>
         <button ion-button clear small color="primary" icon-start (click)="doPrompt()">
           <ion-icon name='repeat'></ion-icon>
-          Transfer
+          Transfer this device
         </button>
       </ion-col>
       <ion-col>
@@ -53,5 +53,12 @@
 
       </ion-col>
     </ion-row>
+
+    <ng-template style="z-index:9999" #withFlags let-attrs="attrs">
+      <span>{{attrs.data.email}}</span>
+    </ng-template>
+    <ion-auto-complete [dataProvider]="ctrlcompleteTestService" #searchbar [template]="withFlags"></ion-auto-complete>
+    <button ion-button block (click)="TransferDevice(device)">Transfer Device</button>
+
   </ion-card>
 </ion-content>

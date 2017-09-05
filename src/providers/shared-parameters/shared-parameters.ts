@@ -28,7 +28,7 @@ export class SharedParametersProvider {
   }
 
   getMessages() {
-      return this.devices;
+      return this.messages;
   }
 
   setUser(user) {
