@@ -4,66 +4,57 @@
     <div class="logo" text-center >
       <img src="/assets/img/flat.png" width="80" height="80">
     </div>
-    <h3 text-center>Warranty</h3>
-
+    <h3 text-center class="titulo">Warranty</h3>
+    <ion-toolbar >
+      <ion-segment  [(ngModel)]="segments">
+        <ion-segment-button value="login" class="title-segment">
+          LOGIN
+        </ion-segment-button>
+        <ion-segment-button value="logaccount" class="title-segment">
+          CREATE ACCOUNT
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
   </ion-navbar>
-
-
-<ion-toolbar class="bg-transparent">
-  <ion-segment  [(ngModel)]="segments">
-    <ion-segment-button value="login">
-      LOGIN
-    </ion-segment-button>
-    <ion-segment-button value="logaccount">
-      CREATE ACCOUNT
-    </ion-segment-button>
-  </ion-segment>
-</ion-toolbar>
 </ion-header>
 <ion-content class="background" >
-
   <div [ngSwitch]="segments">
     <ion-list *ngSwitchCase="'login'" >
       <ion-grid>
         <ion-row>
-          <ion-col col-12 >
-            <ion-card >
-              <ion-card-header>
-                <ion-title></ion-title>
-              </ion-card-header>
-              <ion-card-content>
-                <ion-list >
-                  <ion-item>
-                    <ion-input [(ngModel)]="correo" type="text" placeholder="Username" clearInput="true"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                    <ion-input [(ngModel)]="contrasena" type="password" placeholder="Password" clearInput="true"></ion-input>
-                  </ion-item>
-                </ion-list>
-                <button ion-button block large color="primary"
-                        (click) ="Login();">
-                  Sign In</button>
-                <ion-item class="bg-transparent">
-                  <p>Forgot your password? <a>click here</a></p>
-                </ion-item>
-                <hr>
-                <p text-center>-Or-</p>
-                <ion-grid>
-                  <ion-row>
-                    <button ion-button block icon-left color="facebook">
-                      <ion-icon name="logo-facebook"></ion-icon>
-                      <div> Login with facebook</div>
-                    </button>
-                  </ion-row>
-                  <ion-row>
-                    <button ion-button block icon-left color="google" >
-                      <ion-icon name="logo-googleplus"></ion-icon>
-                      <div> Login with google</div>
-                    </button>
-                  </ion-row>
-                </ion-grid>
-              </ion-card-content>
-            </ion-card>
+          <ion-col  >
+            <ion-list no-lines padding-top >
+              <ion-item>
+                <ion-input [(ngModel)]="correo" type="text" placeholder="Username" clearInput="true"></ion-input>
+                <ion-icon name="mail" color="gray" small item-left></ion-icon>
+              </ion-item>
+              <ion-item>
+                <ion-input [(ngModel)]="contrasena" type="password" placeholder="Password" clearInput="true"></ion-input>
+                <ion-icon name="lock" color="gray" small item-left></ion-icon>
+              </ion-item>
+            </ion-list>
+            <button ion-button block large color="primary"
+                    (click) ="Login();">
+              Sign In</button>
+            <ion-item class="bg-transparent">
+              <p class="title-forgot">Forgot your password? <a>click here</a></p>
+            </ion-item>
+
+            <p text-center>-Or-</p>
+            <ion-grid>
+              <ion-row>
+                <button ion-button block icon-left color="facebook">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                  <div> Login with facebook</div>
+                </button>
+              </ion-row>
+              <ion-row>
+                <button ion-button block icon-left color="google" >
+                  <ion-icon name="logo-googleplus"></ion-icon>
+                  <div> Login with google</div>
+                </button>
+              </ion-row>
+            </ion-grid>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -73,38 +64,37 @@
       <ion-grid>
         <ion-row>
           <ion-col col-12>
-            <ion-card >
-              <ion-card-header>
-                <ion-title></ion-title>
-              </ion-card-header>
-              <ion-card-content >
-                <ion-list inset>
-                  <ion-item>
-                    <ion-input type="text" placeholder="First name" clearInput="true"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                    <ion-input type="text" placeholder="Last name" clearInput="true"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                    <ion-input type="text" placeholder="Email address" clearInput="true"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                    <ion-input type="password" placeholder="Password" clearInput="true"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                    <ion-input type="password" placeholder="Confirm Password" clearInput="true"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                    <ion-input type="text" placeholder="Phone number" clearInput="true"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                    <ion-input type="text" placeholder="Country"></ion-input>
-                  </ion-item>
-                  <button ion-button large block color="primary">Sign Up</button>
-                </ion-list>
-
-              </ion-card-content>
-            </ion-card>
+            <ion-list no-lines padding-top>
+              <ion-item>
+                <ion-input type="text" placeholder="First name" clearInput="true"></ion-input>
+                <ion-icon name="clipboard" color="gray" small item-left></ion-icon>
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="Last name" clearInput="true"></ion-input>
+                <ion-icon name="clipboard" color="gray" small item-left></ion-icon>
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="Email address" clearInput="true"></ion-input>
+                <ion-icon name="mail" color="gray" small item-left></ion-icon>
+              </ion-item>
+              <ion-item>
+                <ion-input type="password" placeholder="Password" clearInput="true"></ion-input>
+                <ion-icon name="lock" color="gray" small item-left></ion-icon>
+              </ion-item>
+              <ion-item>
+                <ion-input type="password" placeholder="Confirm Password" clearInput="true"></ion-input>
+                <ion-icon name="lock" color="gray" small item-left></ion-icon>
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="Phone number" clearInput="true"></ion-input>
+                <ion-icon name="phone-portrait" color="gray" small item-left></ion-icon>
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="Country"></ion-input>
+                  <ion-icon name="globe" color="gray" small item-left></ion-icon>
+                </ion-item>
+              <button ion-button large block color="primary">Sign Up</button>
+            </ion-list>
           </ion-col>
         </ion-row>
       </ion-grid>
