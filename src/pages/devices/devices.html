@@ -21,15 +21,15 @@
             <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
-  <ion-card>
+  <ion-card *ngFor="let device of devices">
     <ion-card-content>
       <ion-card-title>
-      Cell Phone-Samsung-Galaxy A5
+      {{device.make.name}}
       </ion-card-title>
       <ion-list>
-        <div class="card-subtitle margin-list"><ion-icon  name="barcode" ios="ios-barcode" md="md-barcode"></ion-icon> Serial</div>
-        <div class="card-subtitle"><ion-icon  name="calendar"></ion-icon> Date of Purchase</div>
-        <div class="card-subtitle"><ion-icon  name="person"></ion-icon> Vendor</div>
+        <div class="card-subtitle margin-list"><ion-icon  name="barcode" ios="ios-barcode" md="md-barcode"></ion-icon> {{device.strSerial}}</div>
+        <div class="card-subtitle"><ion-icon  name="calendar"></ion-icon> {{device.datDatePurchase}}</div>
+        <div class="card-subtitle"><ion-icon  name="person"></ion-icon> {{device.strVendor}}</div>
       </ion-list>
     </ion-card-content>
 

@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, Platform, AlertController   } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, Platform, AlertController, LoadingController   } from 'ionic-angular';
 import { NewdevicesPage } from "../index.paginas";
+import { Http } from '@angular/http';
 
+import { url } from "../../config/url.config"
+
+import { SharedParametersProvider } from "../../providers/shared-parameters/shared-parameters"
+import { CompleteTestServiceProvider } from '../../providers/complete-test-service/complete-test-service';
 
 @IonicPage()
 @Component({
@@ -11,12 +16,38 @@ import { NewdevicesPage } from "../index.paginas";
 export class DevicesPage {
   tab9:any = NewdevicesPage;
 
+  devices:any = [];
+  messages:any = [];
+  user:any = {};
+  transferuser:any = {};
+  devicesfiltered:any = {};
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public platform: Platform,
               public actionsheetCtrl: ActionSheetController,
-              public alertCtrl: AlertController
+              public alertCtrl: AlertController,
+              public loadingCtrl: LoadingController,
+              public http: Http,
+              public ctrSharedParametersProvider: SharedParametersProvider,
+              public ctrlcompleteTestService: CompleteTestServiceProvider
               ) {
+              }
+
+              ionViewWillEnter(){
+                if (typeof this.user != undefined){
+                  this.devices = this.ctrSharedParametersProvider.getDevices();
+                  this.messages = this.ctrSharedParametersProvider.getMessages();
+                  this.user = this.ctrSharedParametersProvider.getUser();
+                  this.transferuser = this.ctrSharedParametersProvider.getTransferUser();
+                  this.devicesfiltered = this.ctrSharedParametersProvider.getDevicesFiltered();
+                }
+              }
+
+              ionViewCanLeave(){
+                this.ctrSharedParametersProvider.setDevices(this.devices);
+                this.ctrSharedParametersProvider.setMessages(this.messages);
+                this.ctrSharedParametersProvider.setUser(this.user);
               }
 
               doRadio() {
@@ -48,46 +79,22 @@ export class DevicesPage {
               }
 
               openMenu() {
+                  var mybuttons = [];
+                  mybuttons.push(
+                    {
+                      text: 'file1.ppt 1.67MB',
+                      icon: !this.platform.is('ios') ? 'cloud-download' : null,
+                      handler: () => {
+                        window.open('https://drive.google.com/file/d/0B_kFczFUGtVTd3lObElVbDc5S1U/view?usp=drivesdk', '_blank')
+                      }
+                    }
+                  );
                   let actionSheet = this.actionsheetCtrl.create({
                     title: 'Files',
                     cssClass: 'action-sheets-basic-page',
-                    buttons: [
-                      {
-                        text: 'file1.ppt 1.67MB',
-                        icon: !this.platform.is('ios') ? 'cloud-download' : null,
-                        handler: () => {
-                          console.log('Delete clicked');
-                        }
-                      },
-                      {
-                        text: 'file2.xls 1.27MB',
-                        icon: !this.platform.is('ios') ? 'cloud-download' : null,
-                        handler: () => {
-                          console.log('Delete clicked');
-                        }
-                      },
-                      {
-                        text: 'file3.xls 1.87MB',
-                        icon: !this.platform.is('ios') ? 'cloud-download' : null,
-                        handler: () => {
-                          console.log('Delete clicked');
-                        }
-                      },
-
-                      {
-                        text: 'Cancel',
-                        role: 'cancel', // will always sort to be on the bottom
-                        icon: !this.platform.is('ios') ? 'close' : null,
-                        handler: () => {
-                          console.log('Cancel clicked');
-                        }
-                      }
-                    ]
+                    buttons: mybuttons
                   });
                   actionSheet.present();
-              }
-              ionViewDidLoad() {
-                console.log('ionViewDidLoad DevicesPage');
               }
 
               doPrompt() {
