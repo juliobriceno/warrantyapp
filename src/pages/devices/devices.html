@@ -23,6 +23,21 @@
   </ion-fab>
   <ion-card *ngFor="let device of devices">
     <ion-card-content>
+      <ion-row>
+        <ion-col text-left class="margin-opcion">
+
+            <ion-toggle ng-true-value="enable" ng-false-value="disable" checked="true"></ion-toggle>
+
+        </ion-col>
+        <ion-col text-right>
+          <button ion-button clear small color="primary" icon-start (click)="ShowFiles(device)">
+            <ion-icon name='cloud-download'></ion-icon>
+            Files
+          </button>
+        </ion-col>
+
+      </ion-row>
+
       <ion-card-title>
       {{device.make.name}}
       </ion-card-title>
@@ -32,33 +47,15 @@
         <div class="card-subtitle"><ion-icon  name="person"></ion-icon> {{device.strVendor}}</div>
       </ion-list>
     </ion-card-content>
-
-    <ion-row no-padding class="margin-opcion">
-      <ion-col>
-        <button ion-button clear small color="primary" icon-start (click)="ShowFiles(device)">
-          <ion-icon name='cloud-download'></ion-icon>
-          Files
-        </button>
-      </ion-col>
-      <ion-col text-center>
-        <button ion-button clear small color="primary" icon-start (click)="doPrompt()">
-          <ion-icon name='repeat'></ion-icon>
-          Transfer this device
-        </button>
-      </ion-col>
-      <ion-col>
-        <ion-list class="margin-opcion">
-          <ion-item text-right><ion-toggle ng-true-value="enable" ng-false-value="disable" checked="true"></ion-toggle></ion-item>
-        </ion-list>
-
-      </ion-col>
-    </ion-row>
-
-    <ng-template style="z-index:9999" #withFlags let-attrs="attrs">
+    <ng-template #withFlags let-attrs="attrs">
       <span>{{attrs.data.email}}</span>
     </ng-template>
-    <ion-auto-complete [dataProvider]="ctrlcompleteTestService" #searchbar [template]="withFlags"></ion-auto-complete>
-    <button ion-button block (click)="TransferDevice(device)">Transfer Device</button>
+        <div class="container-autocomplete">
+          <ion-auto-complete [dataProvider]="ctrlcompleteTestService"  #searchbar [template]="withFlags"></ion-auto-complete>
+          <ion-buttons end>
+            <button ion-button icon-only (click)="TransferDevice(device)"><ion-icon name='ios-swap'></ion-icon></button>
+          </ion-buttons>
+      </div>
 
   </ion-card>
 </ion-content>
