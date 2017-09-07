@@ -19,7 +19,7 @@ export class HomePage {
   messages:any = [];
   user:any = {};
   transferuser:any = {};
-  devicesfiltered:any = {};
+  devicesfiltered:any = [];
   constructor(public navCtrl: NavController,
              public http: Http, public alertCtrl: AlertController,
              public loadingCtrl: LoadingController, public ctrSharedParametersProvider: SharedParametersProvider) {

@@ -10,7 +10,7 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-  <ion-searchbar (input)="getItems($event)"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="txtSearch" (input)="SearchDevices($event)"></ion-searchbar>
 </ion-header>
 
 <ion-content padding>
@@ -21,12 +21,12 @@
             <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
-  <ion-card *ngFor="let device of devices">
+  <ion-card *ngFor="let device of devicesfiltered">
     <ion-card-content>
       <ion-row>
         <ion-col text-left class="margin-opcion">
 
-            <ion-toggle ng-true-value="enable" ng-false-value="disable" checked="true"></ion-toggle>
+            <ion-toggle [(ngModel)]="device.Status" (ionChange)="DeactivateDevice(device)" ng-true-value="enable" ng-false-value="disable" checked="true"></ion-toggle>
 
         </ion-col>
         <ion-col text-right>
@@ -47,15 +47,8 @@
         <div class="card-subtitle"><ion-icon  name="person"></ion-icon> {{device.strVendor}}</div>
       </ion-list>
     </ion-card-content>
-    <ng-template #withFlags let-attrs="attrs">
-      <span>{{attrs.data.email}}</span>
-    </ng-template>
-        <div class="container-autocomplete">
-          <ion-auto-complete [dataProvider]="ctrlcompleteTestService"  #searchbar [template]="withFlags"></ion-auto-complete>
-          <ion-buttons end>
-            <button ion-button icon-only (click)="TransferDevice(device)"><ion-icon name='ios-swap'></ion-icon></button>
-          </ion-buttons>
-      </div>
-
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openTransferDevice(device)"><ion-icon name='ios-swap'></ion-icon></button>
+    </ion-buttons>
   </ion-card>
 </ion-content>

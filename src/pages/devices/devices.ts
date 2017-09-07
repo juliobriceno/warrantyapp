@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, Platform, AlertController, LoadingController   } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, Platform, AlertController, LoadingController, ModalController  } from 'ionic-angular';
 import { NewdevicesPage } from "../index.paginas";
 import { Http } from '@angular/http';
 import {ViewChild} from '@angular/core';
 
 import { url } from "../../config/url.config"
+
+import { TransferDevicePage } from "../transfer-device/transfer-device";
 
 import { SharedParametersProvider } from "../../providers/shared-parameters/shared-parameters"
 import { CompleteTestServiceProvider } from '../../providers/complete-test-service/complete-test-service';
@@ -21,8 +23,9 @@ export class DevicesPage {
   messages:any = [];
   user:any = {};
   transferuser:any = {};
-  devicesfiltered:any = {};
+  devicesfiltered:any = [];
   @ViewChild('searchbar') searchbar: any;
+  txtSearch:string= '';
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -32,7 +35,8 @@ export class DevicesPage {
               public loadingCtrl: LoadingController,
               public http: Http,
               public ctrSharedParametersProvider: SharedParametersProvider,
-              public ctrlcompleteTestService: CompleteTestServiceProvider
+              public ctrlcompleteTestService: CompleteTestServiceProvider,
+              public modalCtrl: ModalController
               ) {
               }
 
@@ -44,6 +48,71 @@ export class DevicesPage {
                   this.transferuser = this.ctrSharedParametersProvider.getTransferUser();
                   this.devicesfiltered = this.ctrSharedParametersProvider.getDevicesFiltered();
                 }
+              }
+
+              openTransferDevice(device){
+                let modalTransferDevicePage = this.modalCtrl.create(TransferDevicePage, {device: device});
+                modalTransferDevicePage.onDidDismiss(data => {
+                  if (data.result == 'transfered'){
+                    this.devices = this.devices.filter(function (el){
+                      return el.strSerial != device.strSerial
+                    })
+                    this.devicesfiltered = this.devices;
+                  }
+                });
+                modalTransferDevicePage.present();
+              }
+
+              SearchDevices(){
+                var strSearch = this.txtSearch;
+                this.devicesfiltered = this.devices;
+                this.devicesfiltered = this.devicesfiltered.filter(function (el) {
+                    return el.make.name.toUpperCase().indexOf(strSearch.toUpperCase()) > -1 || el.model.name.toUpperCase().indexOf(strSearch.toUpperCase()) > -1 || el.category.name.toUpperCase().indexOf(strSearch.toUpperCase()) > -1
+                })
+              }
+
+              DeactivateDevice(device){
+
+                let mUrl = url + 'api/DeactivateDevice';
+
+                const body = { strSerial: device.strSerial, Status: device.Status };
+
+                let loading = this.loadingCtrl.create({
+                  content: 'Working...',
+                  spinner: 'ios'
+                });
+
+                loading.present();
+
+                this.http
+                  .post( mUrl, body ).subscribe(res => {
+                    loading.dismiss();
+                    if (res.json().Result == 'ok' ){
+                      var msg = '';
+                      if (device.Status == false) {
+                          msg = 'Your device was deativated! Remember you can re-activate any time.';
+                      }
+                      else {
+                          msg = 'Your device is active now.';
+                      }
+
+                      let alert = this.alertCtrl.create({
+                        title: 'Great!',
+                        subTitle: msg,
+                        buttons: ['Ok']
+                      });
+                      alert.present();
+                    }
+                    else{
+                      let alert = this.alertCtrl.create({
+                        title: 'Oops!',
+                        subTitle: 'Credentials are invalid! Please register',
+                        buttons: ['Ok']
+                      });
+                      alert.present();
+                    }
+                  }
+                )
               }
 
               doRadio() {
@@ -94,71 +163,6 @@ export class DevicesPage {
                     buttons: mybuttons
                   });
                   actionSheet.present();
-              }
-
-              TransferDevice(device){
-                if (typeof this.searchbar.getSelection() == 'undefined'){
-                  let alert = this.alertCtrl.create({
-                    title: 'Ohhh',
-                    subTitle: 'You must choose a valid email',
-                    buttons: ['Dismiss']
-                  });
-                  alert.present();
-                  return 0;
-                }
-                console.log(this.searchbar.getSelection());
-                let confirm = this.alertCtrl.create({
-                  title: 'Sure?',
-                  message: 'Are you sure that you like to transfer this device?',
-                  buttons: [
-                    {
-                      text: 'Ok',
-                      handler: () => {
-
-                        let mUrl = url + 'api/TransferDevice';
-
-                        const body = { strSerial: device.strSerial, strEmailTransfer: this.searchbar.getSelection().email };
-
-                        let loading = this.loadingCtrl.create({
-                          content: 'Working...',
-                          spinner: 'ios'
-                        });
-
-                        loading.present();
-
-                        this.http
-                          .post( mUrl, body ).subscribe(res => {
-                            loading.dismiss();
-                            if (res.json().Result == 'ok' ){
-                              let alert = this.alertCtrl.create({
-                                title: 'Greate!',
-                                subTitle: 'Device was transfer',
-                                buttons: ['Ok']
-                              });
-                              alert.present();
-                            }
-                            else{
-                              let alert = this.alertCtrl.create({
-                                title: 'Oops!',
-                                subTitle: 'Credentials are invalid! Please register',
-                                buttons: ['Ok']
-                              });
-                              alert.present();
-                            }
-                          }
-                        )
-
-                      }
-                    },
-                    {
-                      text: 'Cancel',
-                      handler: () => {
-                        console.log('Disagree clicked');
-                      }
-                    }
-                  ]
-                });
-                confirm.present();
               }
 
               doPrompt() {
