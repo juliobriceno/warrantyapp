@@ -9,11 +9,12 @@
         <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>
       </button>
     </ion-buttons>
+
   </ion-navbar>
-  <ion-searchbar [(ngModel)]="txtSearch" (input)="SearchDevices($event)"></ion-searchbar>
+  <ion-searchbar  [(ngModel)]="txtSearch" (input)="SearchDevices($event)"></ion-searchbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-fab bottom right>
     <button ion-fab
             color="primary"
@@ -29,7 +30,7 @@
             <ion-toggle [(ngModel)]="device.Status" (ionChange)="DeactivateDevice(device)" ng-true-value="enable" ng-false-value="disable" checked="true"></ion-toggle>
 
         </ion-col>
-        <ion-col text-right>
+        <ion-col text-right class="margin-opcion">
           <button ion-button clear small color="primary" icon-start (click)="ShowFiles(device)">
             <ion-icon name='cloud-download'></ion-icon>
             Files
@@ -37,8 +38,7 @@
         </ion-col>
 
       </ion-row>
-
-      <ion-card-title>
+      <ion-card-title class="margin-card">
       {{device.make.name}}
       </ion-card-title>
       <ion-list>
@@ -47,8 +47,8 @@
         <div class="card-subtitle"><ion-icon  name="person"></ion-icon> {{device.strVendor}}</div>
       </ion-list>
     </ion-card-content>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="openTransferDevice(device)"><ion-icon name='ios-swap'></ion-icon></button>
+    <ion-buttons end class="margin-transfer">
+      <button ion-button icon-start clear small (click)="openTransferDevice(device)"><ion-icon name='ios-swap'></ion-icon>Transfer</button>
     </ion-buttons>
   </ion-card>
 </ion-content>

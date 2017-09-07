@@ -1,8 +1,18 @@
 
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="dark">
+
     <ion-title>Transfer Device</ion-title>
+    <ion-buttons start left>
+      <button ion-button icon-only (click)="closeModal()"><ion-icon name="close"></ion-icon></button>
+    </ion-buttons>
+    <ion-buttons end>
+        <ion-buttons end>
+          <button ion-button icon-only (click)="TransferDevice(device)"><ion-icon name="checkmark"></ion-icon></button>
+        </ion-buttons>
+
+      </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -17,5 +27,5 @@
       <button ion-button icon-only (click)="TransferDevice(device)"><ion-icon name='ios-swap'></ion-icon></button>
     </ion-buttons>
   </div>
-  <button ion-button block (click)="closeModal()">Cerrar</button>
+
 </ion-content>
