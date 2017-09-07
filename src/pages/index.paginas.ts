@@ -5,3 +5,4 @@ export {TabsPage} from "./tabs/tabs";
 export {NewdevicesPage} from "./newdevices/newdevices";
 export {MenuopcionsPage} from "./menuopcions/menuopcions";
 export {MenufilePage} from "./menufile/menufile";
+export {TransferDevicePage} from "./transfer-device/transfer-device";

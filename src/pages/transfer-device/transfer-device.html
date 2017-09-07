@@ -1,0 +1,21 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Transfer Device</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ng-template #withFlags let-attrs="attrs">
+    <span>{{attrs.data.email}}</span>
+  </ng-template>
+  <div class="container-autocomplete">
+    <ion-auto-complete [dataProvider]="ctrlcompleteTestService"  #searchbar [template]="withFlags"></ion-auto-complete>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="TransferDevice(device)"><ion-icon name='ios-swap'></ion-icon></button>
+    </ion-buttons>
+  </div>
+  <button ion-button block (click)="closeModal()">Cerrar</button>
+</ion-content>
