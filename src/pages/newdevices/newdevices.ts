@@ -59,12 +59,6 @@ export class NewdevicesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewdevicesPage');
   }
-  ngAfterViewInit(){
-
-    this.slides.lockSwipes(true);
-    this.slides.freeMode = false;
-    this.slides.paginationType = "progress";
-
-  }
+  
 
 }
