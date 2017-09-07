@@ -10,7 +10,7 @@
         <ion-input type="text" placeholder="Serial" clearInput="true"></ion-input>
       </ion-item>
       <ion-item>
-         <ion-label>Category</ion-label>
+         <ion-label class="label-style">Category</ion-label>
 
         <ion-select>
               <ion-option value="">Cell Phone</ion-option>
@@ -23,7 +23,7 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label>Subcategory</ion-label>
+        <ion-label class="label-style">Subcategory</ion-label>
         <ion-select>
               <ion-option value="">SmartPhone</ion-option>
               <ion-option value="">Computer</ion-option>
@@ -41,7 +41,7 @@
         <ion-input type="text" placeholder="Model" clearInput="true"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Warranty time</ion-label>
+        <ion-label class="label-style">Warranty time</ion-label>
         <ion-select>
               <ion-option value="">1 year</ion-option>
               <ion-option value="">2 year </ion-option>
@@ -61,7 +61,7 @@
       <ion-fab bottom right>
         <button ion-fab
                 color="primary"
-                (click)="openModal">
+              [navPush]="ModalFile">
                 <ion-icon name="cloud-upload"></ion-icon>
         </button>
       </ion-fab>

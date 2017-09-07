@@ -5,7 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
-import {HomePage,DevicesPage,AccountPage,TabsPage,NewdevicesPage,MenuopcionsPage, MenufilePage,TransferDevicePage} from '../pages/index.paginas';
+import {HomePage,DevicesPage,AccountPage,TabsPage,NewdevicesPage,MenuopcionsPage, MenufilePage,TransferDevicePage,ModalFilePage} from '../pages/index.paginas';
 import { SharedParametersProvider } from '../providers/shared-parameters/shared-parameters';
 import { AutoCompleteModule } from 'ionic2-auto-complete';
 import { CompleteTestServiceProvider } from '../providers/complete-test-service/complete-test-service';
@@ -20,7 +20,8 @@ import { CompleteTestServiceProvider } from '../providers/complete-test-service/
     NewdevicesPage,
     MenuopcionsPage,
     MenufilePage,
-    TransferDevicePage
+    TransferDevicePage,
+    ModalFilePage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,8 @@ import { CompleteTestServiceProvider } from '../providers/complete-test-service/
     NewdevicesPage,
     MenuopcionsPage,
     MenufilePage,
-    TransferDevicePage
+    TransferDevicePage,
+    ModalFilePage
   ],
   providers: [
     StatusBar,

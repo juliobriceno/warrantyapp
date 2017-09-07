@@ -1,19 +1,35 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>modal-file</ion-title>
+  <ion-navbar  color="dark">
+    <ion-title >Upload files</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <img src="assets/img/file.jpg" class="slide-image"/>
-  <h5 class="slide-title">Fill product data, upload files (picture, pdf files, etc) and press save</h5>
+<ion-content >
+  <div class="center">
+    <br>
+  <img src="assets/img/file.png" width="100" class="image"/>
+  <h5 >Fill product data, upload files (picture, pdf files, etc) and press save</h5>
 
-  <button ion-button icon-right color="primary"
+  <button text-center ion-button icon-right color="primary"
           (click)="dofile()">
     Upload File
     <ion-icon name="cloud-upload"></ion-icon>
   </button>
+</div>
+
+<ion-list>
+  <ion-item-divider color="light">Name Size Actions
+  </ion-item-divider>
+  <ion-item>
+    <ion-thumbnail item-start>
+      <ion-icon name="document" color="primary" item-start small></ion-icon>
+    </ion-thumbnail>
+    <p>Hayao Miyazaki • 1988</p>
+    <button ion-button clear item-end><ion-icon name="trash" color="danger" item-start small></ion-icon></button>
+  </ion-item>
+</ion-list>
+
 </ion-content>
