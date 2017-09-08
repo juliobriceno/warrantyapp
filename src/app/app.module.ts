@@ -9,6 +9,7 @@ import {HomePage,DevicesPage,AccountPage,TabsPage,NewdevicesPage,MenuopcionsPage
 import { SharedParametersProvider } from '../providers/shared-parameters/shared-parameters';
 import { AutoCompleteModule } from 'ionic2-auto-complete';
 import { CompleteTestServiceProvider } from '../providers/complete-test-service/complete-test-service';
+import { FileChooser } from '@ionic-native/file-chooser';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { CompleteTestServiceProvider } from '../providers/complete-test-service/
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SharedParametersProvider,
-    CompleteTestServiceProvider
+    CompleteTestServiceProvider,
+    FileChooser
   ]
 })
 export class AppModule {}

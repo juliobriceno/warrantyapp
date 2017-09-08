@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ActionSheetController } from 'ionic-angular';
+import { FileChooser } from '@ionic-native/file-chooser';
 
 @IonicPage()
 @Component({
@@ -11,8 +12,16 @@ export class ModalFilePage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public platform: Platform,
-              public actionsheetCtrl: ActionSheetController) {
+              public actionsheetCtrl: ActionSheetController,
+              public fileChooser: FileChooser) {
   }
+
+  openFileChooser(){
+    this.fileChooser.open()
+      .then(uri => console.log(uri))
+      .catch(e => console.log(e));
+  }
+
   dofile() {
       let actionSheet = this.actionsheetCtrl.create({
         title: 'Add archive',
