@@ -10,6 +10,8 @@ import { SharedParametersProvider } from '../providers/shared-parameters/shared-
 import { AutoCompleteModule } from 'ionic2-auto-complete';
 import { CompleteTestServiceProvider } from '../providers/complete-test-service/complete-test-service';
 import { FileChooser } from '@ionic-native/file-chooser';
+import { FilePath } from '@ionic-native/file-path';
+import { File } from '@ionic-native/file';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { FileChooser } from '@ionic-native/file-chooser';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SharedParametersProvider,
     CompleteTestServiceProvider,
-    FileChooser
+    FileChooser,
+    File,
+    FilePath
   ]
 })
 export class AppModule {}

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ActionSheetController } from 'ionic-angular';
 import { FileChooser } from '@ionic-native/file-chooser';
+import { FilePath } from '@ionic-native/file-path';
+import { File } from '@ionic-native/file';
 
 @IonicPage()
 @Component({
@@ -13,13 +15,28 @@ export class ModalFilePage {
               public navParams: NavParams,
               public platform: Platform,
               public actionsheetCtrl: ActionSheetController,
-              public fileChooser: FileChooser) {
+              public fileChooser: FileChooser,
+              public filePath: FilePath,
+              public File: File
+            ) {
   }
 
   openFileChooser(){
-    this.fileChooser.open()
-      .then(uri => console.log(uri))
-      .catch(e => console.log(e));
+    this.fileChooser.open().then((uri) => {
+     this.filePath.resolveNativePath(uri).then((fileentry) => {
+       alert(fileentry);
+       alert(uri);
+       var imagePath = fileentry.substr(0, fileentry.lastIndexOf('/') + 1);
+       var imageName = fileentry.substr(fileentry.lastIndexOf('/') + 1);
+       alert(imagePath);
+       alert(imageName);
+       this.File.readAsDataURL(imagePath, imageName).then((b64str) => {
+         alert('Image B64 URL: ' + b64str);
+       }).catch(err => {
+         console.log('readAsDataURL failed: (' + err.code + ")" + err.message);
+       })
+     })
+   })
   }
 
   dofile() {
