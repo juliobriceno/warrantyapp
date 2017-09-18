@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ActionSheetController, AlertController, LoadingController } from 'ionic-angular';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { FilePath } from '@ionic-native/file-path';
 import { File } from '@ionic-native/file';
+import { Http } from '@angular/http';
+
+import { url } from "../../config/url.config"
+
+import { SharedParametersProvider } from "../../providers/shared-parameters/shared-parameters"
 
 @IonicPage()
 @Component({
@@ -11,30 +16,29 @@ import { File } from '@ionic-native/file';
 })
 export class ModalFilePage {
 
+  files:any = [];
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public platform: Platform,
               public actionsheetCtrl: ActionSheetController,
               public fileChooser: FileChooser,
               public filePath: FilePath,
-              public File: File
+              public File: File,
+              public http: Http,
+              public alertCtrl: AlertController,
+              public loadingCtrl: LoadingController,
+              public ctrSharedParametersProvider: SharedParametersProvider
             ) {
   }
 
   openFileChooser(){
     this.fileChooser.open().then((uri) => {
      this.filePath.resolveNativePath(uri).then((fileentry) => {
-       alert(fileentry);
-       alert(uri);
        var imagePath = fileentry.substr(0, fileentry.lastIndexOf('/') + 1);
        var imageName = fileentry.substr(fileentry.lastIndexOf('/') + 1);
-       alert(imagePath);
-       alert(imageName);
-       this.File.readAsDataURL(imagePath, imageName).then((b64str) => {
-         alert('Image B64 URL: ' + b64str);
-       }).catch(err => {
-         console.log('readAsDataURL failed: (' + err.code + ")" + err.message);
-       })
+       this.files.push({filename: imageName, filepath: imagePath});
+       this.ctrSharedParametersProvider.setFiles(this.files);
      })
    })
   }

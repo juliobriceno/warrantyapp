@@ -40,7 +40,7 @@ export class HomePage {
         if (res.json().Result == 'ok' ){
           this.devices = res.json().Devices;
           this.messages = res.json().Messages;
-          this.user = res.json().Devices;
+          this.user = res.json().User;
           this.transferuser = res.json().transferusers;
           this.devicesfiltered = this.devices;
 

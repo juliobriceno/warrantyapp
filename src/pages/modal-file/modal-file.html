@@ -21,23 +21,15 @@
 </div>
 <ion-list class="margin-list">
   <ion-item-divider color="light" >
-    <div>Name Size Actions</div></ion-item-divider>
-  <ion-item >
-    <p>Hayao Miyazaki • 1988</p>
+    <div>Name Size Actions</div>
+  </ion-item-divider>
+
+  <ion-item *ngFor="let file of files" >
+    <p>{{file.filename}}</p>
     <ion-icon name="document" color="primary" item-start small></ion-icon>
     <button ion-button clear item-end><ion-icon name="trash" color="danger" item-start small></ion-icon></button>
   </ion-item>
 
-  <ion-item >
-    <p>Hayao Miyazaki • 1988</p>
-    <ion-icon name="document" color="primary" item-start small></ion-icon>
-    <button ion-button clear item-end><ion-icon name="trash" color="danger" item-start small></ion-icon></button>
-  </ion-item>
-  <ion-item >
-    <p>Hayao Miyazaki • 1988</p>
-    <ion-icon name="document" color="primary" item-start small></ion-icon>
-    <button ion-button clear item-end><ion-icon name="trash" color="danger" item-start small></ion-icon></button>
-  </ion-item>
 </ion-list>
 
 </ion-content>

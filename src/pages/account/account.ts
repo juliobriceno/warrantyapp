@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, LoadingController } from 'ionic-angular';
 
-/**
- * Generated class for the AccountPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { lCountries } from "../../config/lists"
+
+import { Http } from '@angular/http';
+
+import { url } from "../../config/url.config"
+
+import { SharedParametersProvider } from "../../providers/shared-parameters/shared-parameters"
 
 @IonicPage()
 @Component({
@@ -14,14 +15,109 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'account.html',
 })
 export class AccountPage {
+  user:any = {};
+  countries:any = [];
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              public http: Http,
+              public alertCtrl: AlertController,
+              public loadingCtrl: LoadingController,
+              public ctrSharedParametersProvider: SharedParametersProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AccountPage');
+  ionViewWillEnter(){
+    this.countries = lCountries;
+    if (typeof this.user != undefined){
+      this.user = this.ctrSharedParametersProvider.getUser();
+      this.user.country = this.countries.filter((el) => {
+        return el.id == this.user.country.id
+      })[0]
+    }
   }
 
+  updateAccount(){
+
+    let mUrl = url + 'api/UpdateUser';
+
+    const body = {user: this.user};
+
+    let loading = this.loadingCtrl.create({
+      content: 'Working...',
+      spinner: 'ios'
+    });
+
+    loading.present();
+
+    this.http
+      .post( mUrl, body ).subscribe(res => {
+        loading.dismiss();
+        if (res.json().Result == 'ok' ){
+          let alert = this.alertCtrl.create({
+            title: 'Great!',
+            subTitle: 'Your user account was updated!',
+            buttons: ['Ok']
+          });
+          alert.present();
+        }
+        else{
+          let alert = this.alertCtrl.create({
+            title: 'Oops!',
+            subTitle: 'Credentials are invalid! Please register',
+            buttons: ['Ok']
+          });
+          alert.present();
+        }
+      }
+    )
+
+  }
+
+  MakeVisible(){
+
+    let mUrl = url + 'api/MakeVisible';
+
+    const body = { lastupdate: new Date(), isvisible: this.user.isvisible };
+
+    let loading = this.loadingCtrl.create({
+      content: 'Working...',
+      spinner: 'ios'
+    });
+
+    loading.present();
+
+    this.http
+      .post( mUrl, body ).subscribe(res => {
+        loading.dismiss();
+        if (res.json().Result == 'ok' ){
+          if (this.user.isvisible == true){
+            let alert = this.alertCtrl.create({
+              title: 'Great!',
+              subTitle: 'Another user can send you a warranty for 48 hours!',
+              buttons: ['Ok']
+            });
+            alert.present();
+          }
+          else{
+            let alert = this.alertCtrl.create({
+              title: 'Great!',
+              subTitle: 'You are not visible for warranty transfers!',
+              buttons: ['Ok']
+            });
+            alert.present();
+          }
+        }
+        else{
+          let alert = this.alertCtrl.create({
+            title: 'Oops!',
+            subTitle: 'Credentials are invalid! Please register',
+            buttons: ['Ok']
+          });
+          alert.present();
+        }
+      }
+    )
+
+  }
 
 }

@@ -113,6 +113,8 @@ export class DevicesPage {
                     }
                   }
                 )
+
+                
               }
 
               doRadio() {

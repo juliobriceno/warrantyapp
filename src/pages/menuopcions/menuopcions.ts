@@ -1,12 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the MenuopcionsPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, ModalController, AlertController, LoadingController, Platform } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -15,11 +8,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MenuopcionsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
+    public platform : Platform
+  )
+  {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MenuopcionsPage');
+  ExitApp(){
+    let alert = this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Do you want to exit Wappanty?',
+      buttons: [{
+        text: "exit?",
+        handler: () => { this.exitApp() }
+      }, {
+        text: "Cancel",
+        role: 'cancel'
+      }]
+    })
+    alert.present();
+  }
+
+  exitApp(){
+    this.platform.exitApp();
   }
 
 }

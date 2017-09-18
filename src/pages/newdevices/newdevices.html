@@ -1,62 +1,55 @@
 <ion-header>
   <ion-navbar color="dark">
     <ion-title>Register Device</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="saveDevice()">
+        <ion-icon name="checkmark" color="primary"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content>
     <ion-list>
       <br>
       <ion-item>
-        <ion-input type="text" placeholder="Serial" clearInput="true"></ion-input>
+        <ion-input [(ngModel)]="device.strSerial" type="text" placeholder="Serial" clearInput="true"></ion-input>
       </ion-item>
       <ion-item>
          <ion-label class="label-style">Category</ion-label>
 
-        <ion-select>
-              <ion-option value="">Cell Phone</ion-option>
-              <ion-option value="">Electronic</ion-option>
-              <ion-option value="">Babies </ion-option>
-              <ion-option value="">Car </ion-option>
-              <ion-option value="">Jewerly </ion-option>
-              <ion-option value="">Beauty </ion-option>
-              <ion-option value="">Garden</ion-option>
-        </ion-select>
+       <ion-select [(ngModel)]="device.category">
+         <ion-option *ngFor="let category of categories" [value]="category">{{category.name}}</ion-option>
+       </ion-select>
+
       </ion-item>
       <ion-item>
         <ion-label class="label-style">Subcategory</ion-label>
-        <ion-select>
-              <ion-option value="">SmartPhone</ion-option>
-              <ion-option value="">Computer</ion-option>
-              <ion-option value="">Tv </ion-option>
-              <ion-option value="">Tablet </ion-option>
-              <ion-option value="">Refrigerator </ion-option>
-              <ion-option value="">Blender </ion-option>
-              <ion-option value="">Light</ion-option>
+
+        <ion-select [(ngModel)]="device.subcategory">
+          <ion-option *ngFor="let subcategory of subcategories" [value]="subcategory">{{subcategory.name}}</ion-option>
         </ion-select>
+
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="Make" clearInput="true"></ion-input>
+        <ion-input [(ngModel)]="make" type="text" placeholder="Make" clearInput="true"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="Model" clearInput="true"></ion-input>
+        <ion-input [(ngModel)]="model" type="text" placeholder="Model" clearInput="true"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label class="label-style">Warranty time</ion-label>
-        <ion-select>
-              <ion-option value="">1 year</ion-option>
-              <ion-option value="">2 year </ion-option>
-              <ion-option value="">3 year </ion-option>
-              <ion-option value="">4 year </ion-option>
-              <ion-option value="">5 year </ion-option>
-              <ion-option value="">6 year </ion-option>
+
+        <ion-select [(ngModel)]="device.warrantytime">
+          <ion-option *ngFor="let warrantytime of warrantytimes" [value]="warrantytime">{{warrantytime.name}}</ion-option>
         </ion-select>
+
       </ion-item>
       <ion-item>
         <ion-label class="label-style">Date of Purchase</ion-label>
-        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.month"></ion-datetime>
+        <ion-datetime [(ngModel)]="device.datDatePurchase" displayFormat="MMM DD YYYY" pickerFormat="YYYY-MM-DD"></ion-datetime>
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="Vendor" clearInput="true"></ion-input>
+        <ion-input [(ngModel)]="device.strVendor" type="text" placeholder="Vendor" clearInput="true"></ion-input>
       </ion-item>
       <ion-fab bottom right>
         <button ion-fab

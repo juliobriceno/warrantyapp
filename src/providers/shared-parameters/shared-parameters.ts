@@ -11,6 +11,7 @@ export class SharedParametersProvider {
   user:any = {};
   transferuser:any = {};
   devicesfiltered:any = {};
+  Files:any = [];
 
   constructor() {
   }
@@ -53,6 +54,14 @@ export class SharedParametersProvider {
 
   getDevicesFiltered() {
       return this.devicesfiltered;
+  }
+
+  setFiles(Files) {
+      this.Files = Files;
+  }
+
+  getFiles() {
+      return this.Files;
   }
 
 }
