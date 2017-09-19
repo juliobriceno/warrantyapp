@@ -15,7 +15,7 @@
         <ion-input [(ngModel)]="device.strSerial" type="text" placeholder="Serial" clearInput="true"></ion-input>
       </ion-item>
       <ion-item>
-         <ion-label class="label-style">Category</ion-label>
+         <ion-label><span class="label-style">Category</span></ion-label>
 
        <ion-select [(ngModel)]="device.category">
          <ion-option *ngFor="let category of categories" [value]="category">{{category.name}}</ion-option>
@@ -23,7 +23,7 @@
 
       </ion-item>
       <ion-item>
-        <ion-label class="label-style">Subcategory</ion-label>
+        <ion-label><span class="label-style">Subcategory</span></ion-label>
 
         <ion-select [(ngModel)]="device.subcategory">
           <ion-option *ngFor="let subcategory of subcategories" [value]="subcategory">{{subcategory.name}}</ion-option>
@@ -37,7 +37,7 @@
         <ion-input [(ngModel)]="model" type="text" placeholder="Model" clearInput="true"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label class="label-style">Warranty time</ion-label>
+        <ion-label><span class="label-style">Warranty time</span></ion-label>
 
         <ion-select [(ngModel)]="device.warrantytime">
           <ion-option *ngFor="let warrantytime of warrantytimes" [value]="warrantytime">{{warrantytime.name}}</ion-option>
@@ -45,13 +45,15 @@
 
       </ion-item>
       <ion-item>
-        <ion-label class="label-style">Date of Purchase</ion-label>
+        <ion-label><span class="label-style">Date of Purchase</span></ion-label>
         <ion-datetime [(ngModel)]="device.datDatePurchase" displayFormat="MMM DD YYYY" pickerFormat="YYYY-MM-DD"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-input [(ngModel)]="device.strVendor" type="text" placeholder="Vendor" clearInput="true"></ion-input>
       </ion-item>
+
       <ion-fab bottom right>
+          <span class="notifications-badge">3</span>
         <button ion-fab
                 color="primary"
               [navPush]="ModalFile">
