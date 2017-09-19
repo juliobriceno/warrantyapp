@@ -9,9 +9,9 @@
 
 <ion-content >
   <div class="center">
-    <br>
+    <br><br><br>
   <img src="assets/img/file.png" width="100" class="image"/>
-  <h5 >Fill product data, upload files (picture, pdf files, etc) and press save</h5>
+  <h6 >Fill product data, upload files (picture, pdf files, etc) and press save</h6>
 
   <button text-center ion-button icon-right color="primary"
           (click)="openFileChooser()">
@@ -21,13 +21,12 @@
 </div>
 <ion-list class="margin-list">
   <ion-item-divider color="light" >
-    <div>Name Size Actions</div>
+    <div>Files</div>
   </ion-item-divider>
 
-  <ion-item *ngFor="let file of files" >
+  <ion-item *ngFor="let file of files">
     <p>{{file.filename}}</p>
-    <ion-icon name="document" color="primary" item-start small></ion-icon>
-    <button ion-button clear item-end><ion-icon name="trash" color="danger" item-start small></ion-icon></button>
+    <button ion-button clear item-start large><ion-icon name="trash" color="danger"></ion-icon></button>
   </ion-item>
 
 </ion-list>
