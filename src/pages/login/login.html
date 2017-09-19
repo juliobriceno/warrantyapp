@@ -2,7 +2,7 @@
   <ion-navbar no-border-bottom >
 
     <div class="logo" text-center >
-      <img src="assets/img/logo.png" width="100" height="80">
+      <img src="assets/img/Wappanty.png.png" width="150" height="90">
     </div>
 
     <ion-toolbar >
@@ -90,6 +90,10 @@
                 <ion-icon name="phone-portrait" color="gray" small item-left></ion-icon>
               </ion-item>
               <ion-item>
+                <ion-label>
+                  <ion-icon name="pin"color="gray"></ion-icon>
+                  <span class="label-style">Country</span>
+                </ion-label>
                 <ion-select [ngClass]="validateRegister.country" [(ngModel)]="user.country">
                   <ion-option *ngFor="let country of countries" [value]="country">{{country.name}}</ion-option>
                 </ion-select>
