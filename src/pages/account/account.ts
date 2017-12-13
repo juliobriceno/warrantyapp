@@ -17,6 +17,7 @@ import { SharedParametersProvider } from "../../providers/shared-parameters/shar
 export class AccountPage {
   user:any = {};
   countries:any = [];
+  selectOptions = {};
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -24,7 +25,16 @@ export class AccountPage {
               public alertCtrl: AlertController,
               public loadingCtrl: LoadingController,
               public ctrSharedParametersProvider: SharedParametersProvider) {
+
+              this.selectOptions = {
+                title: 'XXXXXXXXXXX',
+                subTitle: 'RRRRRRRRRRRRRR',
+                mode: 'ios'
+              };
+
   }
+
+
 
   ionViewWillEnter(){
     this.countries = lCountries;

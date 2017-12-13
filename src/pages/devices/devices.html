@@ -11,7 +11,7 @@
     </ion-buttons>
 
   </ion-navbar>
-  <ion-searchbar  [(ngModel)]="txtSearch" (input)="SearchDevices($event)"></ion-searchbar>
+  <ion-searchbar  color="gray" [(ngModel)]="txtSearch" (input)="SearchDevices($event)"></ion-searchbar>
 </ion-header>
 
 <ion-content>
@@ -22,6 +22,7 @@
             <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
+  
   <ion-card *ngFor="let device of devicesfiltered">
     <ion-card-content>
       <ion-row>

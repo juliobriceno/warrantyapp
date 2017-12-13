@@ -30,7 +30,11 @@ import { File } from '@ionic-native/file';
     BrowserModule,
     HttpModule,
     AutoCompleteModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,{
+    iconMode: 'md',
+    mode:'md'
+
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

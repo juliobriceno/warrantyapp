@@ -4,6 +4,11 @@
       Dashboard
     </ion-title>
     <ion-buttons end>
+
+        <button ion-button (click)="doRadio()">
+          <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>
+        </button>
+
         <button ion-button icon-only>
           <ion-icon name="notifications" class="badge">
             <span class="notifications-badge">3</span>
@@ -14,8 +19,9 @@
           <ion-icon name="more"></ion-icon>
         </button>
       </ion-buttons>
-  </ion-navbar>
 
+  </ion-navbar>
+<ion-searchbar  [(ngModel)]="txtSearch" (input)="SearchDevices($event)"></ion-searchbar>
 </ion-header>
 <ion-content>
   <ion-row padding>
@@ -44,33 +50,96 @@
   <!-- Segments alerts and list devices -->
   <div>
     <ion-segment [(ngModel)]="menu" color="primary" >
-      <ion-segment-button value="alert">
 
-        <label><ion-icon name="bookmark" small></ion-icon>
-        Alerts & Messages</label>
-      </ion-segment-button>
       <ion-segment-button value="list" >
         <ion-icon name="list" small></ion-icon>
         List Devices
       </ion-segment-button>
+      <ion-segment-button value="alert">
+        <label><ion-icon name="bookmark" small></ion-icon>
+        Alerts & Messages</label>
+      </ion-segment-button>
     </ion-segment>
+
   </div>
 
   <div [ngSwitch]="menu">
     <ion-list *ngSwitchCase="'alert'">
       <ion-item *ngFor="let message of messages">
         <p class="color-item"> {{message.message + ' ' + message.message2}} </p>
-        <ion-icon [name]="message.messagetype2 == 'text-success' ? 'checkmark' : 'information-circle'" [color]="message.messagetype2 == 'text-success' ? 'secondary' : 'dark'" item-end small></ion-icon>
+        <button ion-button item-end clear>
+        <ion-icon [name]="message.messagetype2 == 'text-success' ? 'checkmark' : 'information-circle'" [color]="message.messagetype2 == 'text-success' ? 'secondary' : 'dark'" ></ion-icon>
+      </button>
        </ion-item>
     </ion-list>
     <ion-list *ngSwitchCase="'list'" >
       <ion-row>
-      <ion-col col-12>
-        <ion-item *ngFor="let device of devices">
-          <ion-icon name="document" color="primary" item-start small></ion-icon><p class="color-item">{{device.category.name + ' ' + device.make.name + ' ' + device.model.name}}</p>
-        </ion-item>
-    </ion-col>
-    </ion-row>
+        <ion-col col-12>
+          <ion-list>
+            <ion-item-sliding #item>
+              <ion-item  detail-push>
+                <!--<ion-avatar item-start>
+                  <img src="https://avatars1.githubusercontent.com/u/918975?v=3&s=120" class="avatar" alt="">
+                </ion-avatar>-->
+                <h2 class="title-product">Samsung</h2>
+                <ion-row>
+                  <ion-col>
+                    <div class="card-subtitle margin-list"><ion-icon  name="barcode" ios="ios-barcode" md="md-barcode"></ion-icon> AFC3856</div>
+                  </ion-col>
+                  <ion-col>
+                      <div class="card-subtitle"><ion-icon  name="calendar"></ion-icon> 7/11/2017 </div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="card-subtitle"><ion-icon  name="person"></ion-icon> Larry Bird</div>
+
+                  </ion-col>
+
+
+                </ion-row>
+
+              </ion-item>
+
+              <ion-item-options side="right">
+                <button ion-button (click)="favorite(item)">  <ion-toggle checked="true"></ion-toggle></button>
+                <button ion-button  color="secondary" (click)="favorite(item) "><ion-icon name='ios-swap'></ion-icon>Transfer</button>
+                <button ion-button color="light" (click)="unread(item)"><ion-icon name='cloud-download'></ion-icon> Files</button>
+              </ion-item-options>
+            </ion-item-sliding>
+            <ion-item-sliding #item>
+              <ion-item detail-push>
+                <h2 class="title-product">HTC</h2>
+                <ion-row>
+                  <ion-col>
+                    <div class="card-subtitle margin-list"><ion-icon  name="barcode" ios="ios-barcode" md="md-barcode"></ion-icon> AFC3856</div>
+                  </ion-col>
+                  <ion-col>
+                      <div class="card-subtitle"><ion-icon  name="calendar"></ion-icon> 7/11/2017 </div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="card-subtitle"><ion-icon  name="person"></ion-icon> Julio Briceño</div>
+                  </ion-col>
+                </ion-row>
+
+              </ion-item>
+              <ion-item-options side="right">
+                <button ion-button (click)="favorite(item)">  <ion-toggle checked="true"></ion-toggle></button>
+                <button ion-button  color="secondary" (click)="favorite(item) "><ion-icon name='ios-swap'></ion-icon>Transfer</button>
+                <button ion-button color="light" (click)="unread(item)"><ion-icon name='cloud-download'></ion-icon> Files</button>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
     </ion-list>
+    <ion-fab right bottom>
+      <button ion-fab
+              color="primary"
+              [navPush]="tab9">
+              <ion-icon name="add"></ion-icon>
+      </button>
+
+    </ion-fab>
+
   </div>
 </ion-content>

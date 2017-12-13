@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MenuopcionsPage } from "../index.paginas";
+import { NewdevicesPage } from "../index.paginas";
 import { Http } from '@angular/http';
 import { AlertController, LoadingController } from 'ionic-angular';
 
@@ -10,11 +11,14 @@ import { SharedParametersProvider } from "../../providers/shared-parameters/shar
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+
 })
+
 export class HomePage {
+  tab9:any = NewdevicesPage;
   tab10:any = MenuopcionsPage;
-  menu:string="alert";
+  menu:string="list";
   devices:any = [];
   messages:any = [];
   user:any = {};
@@ -75,5 +79,36 @@ export class HomePage {
       this.devicesfiltered = this.ctrSharedParametersProvider.getDevicesFiltered();
     }
   }
+
+                doRadio() {
+                  let alert = this.alertCtrl.create();
+                  alert.setTitle('Filter');
+
+                  alert.addInput({
+                    type: 'radio',
+                    label: 'Current',
+                    value: 'Current',
+                    checked: true
+                  });
+                  alert.addInput({
+                    type: 'radio',
+                    label: 'Past',
+                    value: 'Past'
+
+                  });
+                  alert.addInput({
+                    type: 'radio',
+                    label: 'Close',
+                    value: 'Close'
+
+                  });
+                 alert.addButton('Cancel');
+
+
+                  alert.present();
+                }
+
+
+
 
 }

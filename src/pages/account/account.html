@@ -54,11 +54,18 @@
               <span class="label-style">Country</span>
             </ion-label>
 
-            <ion-select [(ngModel)]="user.country">
+            <ion-select [(ngModel)]="user.country"  [selectOptions]="selectOptions">
               <ion-option *ngFor="let country of countries" [value]="country">{{country.name}}</ion-option>
             </ion-select>
 
+            <ion-select [selectOptions]="selectOptions" interface="popover" >
+              <ion-option>Bacon</ion-option>action-sheet
+              <ion-option>Black Olives</ion-option>
+            </ion-select>
+
           </ion-item>
+
+
       </ion-list>
       <ion-list>
         <ion-item-divider color="light">  Advance Settings</ion-item-divider>

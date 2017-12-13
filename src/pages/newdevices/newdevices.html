@@ -15,6 +15,13 @@
         <ion-input [(ngModel)]="device.strSerial" type="text" placeholder="Serial" clearInput="true"></ion-input>
       </ion-item>
       <ion-item>
+          <ion-input type="text" placeholder="Imei" clearInput="true"></ion-input>
+         <button ion-button item-end icon-left>
+           <ion-icon name="barcode"></ion-icon>
+           scaner
+         </button>
+       </ion-item>
+      <ion-item>
          <ion-label><span class="label-style">Category</span></ion-label>
 
        <ion-select [(ngModel)]="device.category">
@@ -53,12 +60,16 @@
       </ion-item>
 
       <ion-fab bottom right>
-          <span class="notifications-badge">3</span>
-        <button ion-fab
-                color="primary"
-              [navPush]="ModalFile">
-                <ion-icon name="cloud-upload"></ion-icon>
+
+        <button ion-fab color="primary">
+          <ion-icon name="cloud-upload"></ion-icon>
         </button>
+        <ion-fab-list side="top">
+          <button ion-fab>  <ion-icon name="camera"></ion-icon></button>
+          <span class="notifications-badge">3</span>
+          <button ion-fab [navPush]="ModalFile"> <ion-icon name="document"></ion-icon></button>
+
+        </ion-fab-list>
       </ion-fab>
     </ion-list>
 </ion-content>
